@@ -8,7 +8,7 @@
 	<div>
 		<h2>Contact Manager</h2>
 		<h4>
-			<a href="login.htm">Click Here</a>
+			<a href="login.html">Click Here</a>
 		</h4>
 	</div>
 </body>

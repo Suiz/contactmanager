@@ -9,39 +9,13 @@
   <url>http://maven.apache.org</url>
   
   <properties>
-		<spring.version>3.0.5.RELEASE</spring.version>
-		<jdk.version>1.6</jdk.version>
-	</properties>
-  
-  <dependencies>
-  
-  	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-core</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
+  <spring.version>4.0.5.RELEASE</spring.version>
+  <hibernate.version>4.3.5.Final</hibernate.version>
+  <log4j.version>1.2.17</log4j.version>
+  <jdk.version>1.6</jdk.version>
+  <context.path>SpringHibernateAnnotations</context.path>
+  </properties>
 
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-web</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
-
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-webmvc</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
- 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    
-  </dependencies>
-  
   <build>
     <finalName>ContactManager</finalName>
     <plugins>
@@ -66,4 +40,54 @@
 		</plugin>
 	</plugins>
   </build>
+  
+ <dependencies>
+  <dependency>
+   <groupId>log4j</groupId>
+   <artifactId>log4j</artifactId>
+   <version>${log4j.version}</version>
+  </dependency>
+
+  <dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-orm</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+  <dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-jdbc</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+
+  <dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-web</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+
+  <dependency>
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-entitymanager</artifactId>
+   <version>${hibernate.version}</version>
+  </dependency>
+
+  <dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-webmvc</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+
+  <dependency>
+   <groupId>jstl</groupId>
+   <artifactId>jstl</artifactId>
+   <version>1.2</version>
+  </dependency>
+  <dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+   <version>5.1.6</version>
+  </dependency>
+
+
+ </dependencies>
 </project>
