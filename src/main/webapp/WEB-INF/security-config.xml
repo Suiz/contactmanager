@@ -8,9 +8,8 @@
  
 	<http auto-config="true" use-expressions="true">
  
-		<intercept-url pattern="/contacts**" />
- 
-		<access-denied-handler error-page="/403" />
+		<intercept-url pattern="/contacts**" access="hasRole('ROLE_ADMIN')" />
+
  
 		<form-login 
 		    login-page="/login" 
@@ -19,15 +18,15 @@
 			username-parameter="username"
 			password-parameter="password" />
 		<logout logout-success-url="/login?logout"  />
-		<csrf/>
 	</http>
  
 	<authentication-manager>
-	  <authentication-provider>
-		<jdbc-user-service data-source-ref="dataSource"
-		  users-by-username-query=
-		    "select username,password from users where username=?" />
-	  </authentication-provider>
-	</authentication-manager>
+  <authentication-provider>
+   <user-service>
+                <user name="user" password="password" authorities="ROLE_ADMIN" />
+                <user name="user1" password="123" authorities="ROLE_ADMIN" />
+            </user-service>
+  </authentication-provider>
+ </authentication-manager>
  
 </beans:beans>

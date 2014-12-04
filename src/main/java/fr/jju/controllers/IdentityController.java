@@ -30,7 +30,7 @@ public class IdentityController {
 	}
 	
 	@RequestMapping("contacts")
-	public ModelAndView getContacts() {
+	public ModelAndView getContacts(@ModelAttribute Identity identity) {
 		List<Identity> identityList = identityserviceinterface.getList();
 		return new ModelAndView("contacts", "identityList", identityList);
 	}

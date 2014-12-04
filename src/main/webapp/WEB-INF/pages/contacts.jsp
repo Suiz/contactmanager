@@ -3,10 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/resources/css/starter-template.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/styles.css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.*" %>
 <title>IAMWeb</title>
 </head>
@@ -26,10 +30,7 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index.jsp">Home</a></li>
-            <li class="active"><a href="#">View Contacts</a></li>
-            <li><a href="#insert">New Contact</a></li>
-            <li><a href="#editdelete">Edit/Delete</a></li>
+            <li><a href="login?logout">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -53,14 +54,60 @@
 			      </td>
 			      <td><c:out value="${item.phone}" />
 			      </td>
+			      <td><a href="edit?id=${item.id}">Edit</a></td>  
+     			  <td><a href="delete?id=${item.id}">Delete</a></td>
 			    </tr>
 			</c:forEach>
 		</table>
 	</div>
 	
-	<div><a href="contactsForm">Click Here to add new User</a></div>
+	<div id="newUserLink" class="container">
+		<h1>New User</h1>
+	</div>
+	
+	<div id="newUserBlock" class="container">
+		<center>
+
+		  <c:url var="userRegistration" value="saveUser.html" />
+		  <form:form id="registerForm" modelAttribute="identity" method="post"
+		   action="insert">
+		   <table width="400px" height="150px">
+		    <tr>
+		     <td><form:label path="firstName">First Name</form:label>
+		     </td>
+		     <td><form:input path="firstName" />
+		     </td>
+		    </tr>
+		    <tr>
+		     <td><form:label path="lastName">Last Name</form:label>
+		     </td>
+		     <td><form:input path="lastName" />
+		     </td>
+		    </tr>
+		    <tr>
+		     <td><form:label path="phone">Phone</form:label>
+		     </td>
+		     <td><form:input path="phone" />
+		     </td>
+		    </tr>
+		    <tr>
+		     <td></td>
+		     <td><input type="submit" value="Register" /></td>
+		    </tr>
+		   </table>
+		  </form:form>
+		 </center>
+	</div>
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	
+	<script>
+	$(document).ready(function() {
+	    $('#newUserLink').click(function() {
+	            $('#newUserBlock').slideDown('slow');
+	    });
+	});
+	</script>
 </body>
 </html>

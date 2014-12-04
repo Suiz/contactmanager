@@ -8,6 +8,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/starter-template.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/styles.css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>IAMWeb</title>
 </head>
@@ -24,14 +25,6 @@
           </button>
           <a class="navbar-brand" href="#">IAMWeb</a>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="Output">View Contacts</a></li>
-            <li><a href="#insert">New Contact</a></li>
-            <li><a href="#editdelete">Edit/Delete</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
       </div>
     </div>
     
@@ -44,14 +37,14 @@
     </div>
 
     <div class="container text-center">
-      <form action="<c:url value='j_spring_security_check' />" class="form-inline" role="form">
+      <form action="<c:url value='j_spring_security_check' />" class="form-inline" role="form" method="post">
         <div class="form-group">
           <label class="sr-only" for="username">Username</label>
-          <input type="username" class="form-control" id="username" placeholder="Username">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username">
         </div>
         <div class="form-group">
           <label class="sr-only" for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-default">Sign in</button>
       </form>
