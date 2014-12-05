@@ -12,41 +12,60 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.jju.classes.Identity;
 import services.IdentityServiceInterface;
 
+/**
+ * The IdentityController class takes the requests done by contacts.jsp and transforms them into views.
+ * The interface is Autowired to the interface which is implemented by the DAO class.
+ * 
+ * @author Suiz
+ *
+ */
 @Controller
 public class IdentityController {
 
 	@Autowired
 	IdentityServiceInterface identityserviceinterface;
 	
-	@RequestMapping("contactsForm")
-	public ModelAndView getForm(@ModelAttribute Identity identity) {
-		return new ModelAndView("contactsForm");
-	}
-	
+	/**
+	 * addContact takes an identity object passed by the jsp
+	 * and inserts it into the database using the dataSource bean.
+	 * @param identity
+	 * @return ModelAndView object which inserts the record and redirects to the contacts view.
+	 */
 	@RequestMapping("insert")
 	public ModelAndView addContact(@ModelAttribute Identity identity) {
 		identityserviceinterface.insertRow(identity);
 		return new ModelAndView("redirect:contacts");
 	}
 	
+	/**
+	 * getContacts Lists all the contacts in the Identity table of the mySQL database
+	 * @param identity
+	 * @return ModelAndView rendering the contacts view.
+	 */
 	@RequestMapping("contacts")
 	public ModelAndView getContacts(@ModelAttribute Identity identity) {
 		List<Identity> identityList = identityserviceinterface.getList();
 		return new ModelAndView("contacts", "identityList", identityList);
 	}
 	
+	/**
+	 * deleteIdentity takes the id of an object in the database passed by the jsp
+	 * and deletes the corresponding record from the database using the dataSource bean.
+	 * @param id
+	 * @return ModelAndView object which redirects to the contacts view.
+	 */
 	@RequestMapping("delete")
 	public ModelAndView deleteIdentity(@RequestParam int id) {
 		identityserviceinterface.deleteIdentity(id);
 		return new ModelAndView("redirect:contacts");
 	}
 	
-	@RequestMapping("edit")
-	public ModelAndView editIdentity(@RequestParam int id, @ModelAttribute Identity identity) {
-		Identity identityEdit = identityserviceinterface.getRowById(id);
-		return new ModelAndView("edit", "identityEdit", identityEdit);
-	}
-	
+	/**
+	 * updateIdentity takes an identity object passed by the jsp
+	 * and updates its correspoding record in the database using the dataSource bean.
+	 * @param identity
+	 * @return ModelAndView object which updates the record and redirects to the contacts view.
+	 */
 	@RequestMapping("update")
 	public ModelAndView updateIdenity(@ModelAttribute Identity identity) {
 		identityserviceinterface.updateRow(identity);

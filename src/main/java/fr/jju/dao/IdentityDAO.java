@@ -13,6 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fr.jju.classes.Identity;
 import services.IdentityServiceInterface;
 
+/**
+ * DAO object that implements the methods required to
+ * manipulate the database
+ * @author Suiz
+ *
+ */
 public class IdentityDAO implements IdentityServiceInterface {
 
 	@Autowired
