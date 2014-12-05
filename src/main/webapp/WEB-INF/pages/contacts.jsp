@@ -45,20 +45,42 @@
     </div>
     
     <div class="container">
-	    <table class="table table-hover">
-			<c:forEach var="item" items="${identityList}">
-			    <tr>
-			      <td><c:out value="${item.firstName}" />
-			      </td>
-			      <td><c:out value="${item.lastName}" />
-			      </td>
-			      <td><c:out value="${item.phone}" />
-			      </td>
-			      <td><a href="edit?id=${item.id}">Edit</a></td>  
-     			  <td><a href="delete?id=${item.id}">Delete</a></td>
-			    </tr>
-			</c:forEach>
-		</table>
+		    <table class="table table-hover">
+				<c:forEach var="item" items="${identityList}">
+				    <tr class="selectedRow">
+
+	    <form:form id="registerForm" modelAttribute="identity" method="post"
+		   action="update">
+				      <td>
+				      	<form:input path="id" value="${item.id}" type="hidden" />
+						<form:input path="firstName" value="${item.firstName}" class="editField"/>
+				      	<div class="listText">		      		
+			      			<c:out value="${item.firstName}"/>
+	      				</div>
+				      </td>
+				      <td>
+				      	<form:input path="lastName" value="${item.lastName}" class="editField"/>
+				      	<div class="listText">		      		
+			      			<c:out value="${item.lastName}"/>
+	      				</div>
+				      </td>
+				      <td>
+				      	<form:input path="phone" value="${item.phone}" class="editField"/>
+				      	<div class="listText">		      		
+			      			<c:out value="${item.phone}"/>
+	      				</div>
+				      </td>
+				      <!-- <td><a href="edit?id=${item.id}">Edit</a></td> -->
+				      <td>
+				      	<a href="#" class="editButton" onClick="editRow(this)">Edit</a>
+				      	<input type="submit" value="Save" />
+				      </td>
+	     			  <td><a href="delete?id=${item.id}">Delete</a></td>
+
+		</form:form>
+				    </tr>
+				</c:forEach>
+			</table>
 	</div>
 	
 	<div id="newUserLink" class="container">
@@ -108,6 +130,11 @@
 	            $('#newUserBlock').slideDown('slow');
 	    });
 	});
+	
+    function editRow(id) {
+    	$(id).closest('tr').find('.editField').toggle();
+    	$(id).closest('tr').find('.listText').toggle();
+    }
 	</script>
 </body>
 </html>
