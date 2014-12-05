@@ -38,87 +38,88 @@
     
     <div class="container">
 
-      <div class="starter-template">
-        <h1>Contacts</h1>
+      <div class="page-header">
+        <h1>Contact List</h1>
       </div>
 
     </div>
     
     <div class="container">
 		    <table class="table table-hover">
+		    	<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Phone</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
+	            </thead>
 				<c:forEach var="item" items="${identityList}">
 				    <tr class="selectedRow">
 
-	    <form:form id="registerForm" modelAttribute="identity" method="post"
-		   action="update">
-				      <td>
-				      	<form:input path="id" value="${item.id}" type="hidden" />
-						<form:input path="firstName" value="${item.firstName}" class="editField"/>
-				      	<div class="listText">		      		
-			      			<c:out value="${item.firstName}"/>
-	      				</div>
-				      </td>
-				      <td>
-				      	<form:input path="lastName" value="${item.lastName}" class="editField"/>
-				      	<div class="listText">		      		
-			      			<c:out value="${item.lastName}"/>
-	      				</div>
-				      </td>
-				      <td>
-				      	<form:input path="phone" value="${item.phone}" class="editField"/>
-				      	<div class="listText">		      		
-			      			<c:out value="${item.phone}"/>
-	      				</div>
-				      </td>
-				      <!-- <td><a href="edit?id=${item.id}">Edit</a></td> -->
-				      <td>
-				      	<a href="#" class="editButton" onClick="editRow(this)">Edit</a>
-				      	<input type="submit" value="Save" />
-				      </td>
-	     			  <td><a href="delete?id=${item.id}">Delete</a></td>
+	    				<form:form id="registerForm" modelAttribute="identity" method="post"
+		   				action="update">
+							<td>
+								<form:input path="id" value="${item.id}" type="hidden" />
+							<form:input path="firstName" value="${item.firstName}" class="editField"/>
+								<div class="listText">		      		
+									<c:out value="${item.firstName}"/>
+								</div>
+							</td>
+							<td>
+								<form:input path="lastName" value="${item.lastName}" class="editField"/>
+								<div class="listText">		      		
+									<c:out value="${item.lastName}"/>
+								</div>
+							</td>
+							<td>
+								<form:input path="phone" value="${item.phone}" class="editField"/>
+								<div class="listText">		      		
+									<c:out value="${item.phone}"/>
+								</div>
+							</td>
+							<td class="text-right">
+								<input type="submit" class="btn btn-success saveEditButton" value="Save" />
+								<button type="button" class="btn btn-warning editButton" onClick="editRow(this)">Edit</button>
+							</td>
+							  <td><a href="delete?id=${item.id}"><button type="button" class="btn btn-danger">Delete</button></a></td>
 
-		</form:form>
+						</form:form>
 				    </tr>
 				</c:forEach>
 			</table>
 	</div>
 	
 	<div id="newUserLink" class="container">
-		<h1>New User</h1>
+		<p><button type="button" class="btn btn-lg btn-info">+ New User</button></p>
 	</div>
 	
 	<div id="newUserBlock" class="container">
-		<center>
+		
+		<table class="table table-hover">
+			<tr class="selectedRow">
 
-		  <c:url var="userRegistration" value="saveUser.html" />
-		  <form:form id="registerForm" modelAttribute="identity" method="post"
-		   action="insert">
-		   <table width="400px" height="150px">
-		    <tr>
-		     <td><form:label path="firstName">First Name</form:label>
-		     </td>
-		     <td><form:input path="firstName" />
-		     </td>
-		    </tr>
-		    <tr>
-		     <td><form:label path="lastName">Last Name</form:label>
-		     </td>
-		     <td><form:input path="lastName" />
-		     </td>
-		    </tr>
-		    <tr>
-		     <td><form:label path="phone">Phone</form:label>
-		     </td>
-		     <td><form:input path="phone" />
-		     </td>
-		    </tr>
-		    <tr>
-		     <td></td>
-		     <td><input type="submit" value="Register" /></td>
-		    </tr>
-		   </table>
-		  </form:form>
-		 </center>
+				<c:url var="userRegistration" value="saveUser.html" />
+		  		<form:form id="registerForm" modelAttribute="identity" method="post"
+		   		action="insert">
+					<td>
+						<form:input path="firstName" placeholder="First Name"/>
+					</td>
+					<td>
+						<form:input path="lastName" placeholder="Last Name"/>
+					</td>
+					<td>
+						<form:input path="phone" placeholder="Phone"/>
+					</td>
+					<td>
+						<input type="submit" class="btn btn-success" value="Save" />
+					</td>
+					  <td><button type="button" class="btn btn-danger cancelAction">Cancel</button></td>
+
+				</form:form>
+			</tr>
+		</table>
 	</div>
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -129,11 +130,17 @@
 	    $('#newUserLink').click(function() {
 	            $('#newUserBlock').slideDown('slow');
 	    });
+
+	    $('.cancelAction').click(function() {
+	            $('#newUserBlock').hide();
+	    });
 	});
 	
     function editRow(id) {
     	$(id).closest('tr').find('.editField').toggle();
     	$(id).closest('tr').find('.listText').toggle();
+    	$(id).closest('tr').find('.editButton').toggle();
+    	$(id).closest('tr').find('.saveEditButton').toggle();
     }
 	</script>
 </body>

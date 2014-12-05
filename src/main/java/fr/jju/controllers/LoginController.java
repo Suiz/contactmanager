@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 public class LoginController {
 	
@@ -13,10 +14,10 @@ public class LoginController {
 		
 		String message = "";
 		if (loginfail!=null) {
-			message = "Username or password are incorrect.";
+			message = "<div class='alert alert-danger' role='alert'><strong>Oops! </strong>Username or Password are incorrect</div>";
 		}
 		else if (logout!=null) {
-			message = "Succesfully logged out";
+			message = "<div class='alert alert-success' role='alert'><strong>Goodbye! </strong>Logout succesful.</div>";
 		}
 		return new ModelAndView("login", "message", message);
 	}

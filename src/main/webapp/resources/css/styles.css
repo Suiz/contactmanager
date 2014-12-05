@@ -3,3 +3,5 @@ body { padding-top: 70px; }
 #newUserBlock { display: none;}
 
 .editField { display: none;}
+
+.saveEditButton { display: none;}

@@ -7,7 +7,6 @@
 <html>
 <head>
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/resources/css/starter-template.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/styles.css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>IAMWeb</title>
@@ -30,8 +29,9 @@
     
     <div class="container">
 
-      <div class="starter-template">
-        <h1>Welcome to the IAMWeb Project</h1>
+      <div class="text-center">
+        <h1>Welcome to Java Contact Manager v2.0</h1>
+        <div class="well"><p>(Version 1.0 was last semester. This one's the "this time it's personal" version.)</p></div>
       </div>
 
     </div>
@@ -49,7 +49,10 @@
         <button type="submit" class="btn btn-default">Sign in</button>
       </form>
     </div>
-    <div style="color: red">${message}</div>  
+    <div class="container text-center">
+        <p>${message}</p>
+    </div>
+        
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
